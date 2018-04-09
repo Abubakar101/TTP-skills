@@ -11,21 +11,21 @@
 
 // Given the same input string and k = 3, split the string into groups of 2, 3, and 3 characters to get the output string of "24-a0r-74k".
 
-function stringReformatting(s, k) {
-	let newStr = '',
-		count = 0;
-	for (let i = s.length - 1; i >= 0; i--) {
-		if (s[i] != '-') {
-			if (count == k) {
-				newStr += '-';
-				count = 0;
-			}
-			newStr += s[i];
-			count++;
-		}
-	}
-
-	return [...newStr].reduceRight((a, b) => a + b);
+function stringReformatting(str, k) {
+  let counter = 0;
+  for (let i = str.length-1; i > -1; i--) {
+    
+    if (str[i] === "-") {
+      str = str.substr(0, i) + str.substr(i+1, str.length);
+    
+    } else {
+      counter++;
+      if (counter === k && i !== 0) {
+        str = str.substr(0, i) + "-" + str.substr(i, str.length);
+        counter = 0;
+      }
+    }
+  }
+  return str;
 }
-
-stringReformatting('2-4a0r7-4k', 4);
+stringReformatting("2-4a0r7-4k", 4);
