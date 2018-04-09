@@ -22,16 +22,16 @@ function getClosingParen(sentence, openingParenIndex) {
 
 			if (openParanCount === 0) {
 				return i;
-			} else {
-			  return "Missing parentheses"
-			}
+			} 
 		}
 	}
+	
+	return (openParanCount > 0) && "Missing parentheses";
+	
 }
-
 
 getClosingParen(
 	'Sometimes (when I nest them (my parentheticals) too much (like this (and this))) they get confusing.',
-	28
+	10
 );
 
