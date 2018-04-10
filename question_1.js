@@ -20,14 +20,14 @@ function sumOfTwo(arr1, arr2, target) {
 		if (arr1[count]) {
 			obj1[arr1[count]] = true;
 			if (obj2[target - arr1[count]]) {
-				return [target - arr1[count], arr1[count]];
+				return true;
 			}
 		}
 
 		if (arr2[count]) {
 			obj2[arr2[count]] = true;
 			if (obj1[target - arr2[count]]) {
-				return [target - arr2[count], arr2[count]];
+				return true;
 			}
 		}
 
