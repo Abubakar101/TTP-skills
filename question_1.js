@@ -10,18 +10,31 @@
 
   ***** Assuming that they are unsorted, repeated values, and the array sizes are not equal. *****
 */
-function sumOfTwo(a, b, v) {
-	const arr = [...new Set(a), ...new Set(b)];
-	
-	for (let i = arr.length - 1; i >= 0; i--) {
-		for (let j = 0; j < i; j++) {
-			if (arr[i] + arr[j] === v) {
-				console.log(arr[i], arr[j]);
-				return true;
+function sumOfTwo(arr1, arr2, target) {
+	const obj1 = {},
+		obj2 = {};
+
+	let count = 0;
+
+	while (arr1[count] || arr2[count]) {
+		if (arr1[count]) {
+			obj1[arr1[count]] = true;
+			if (obj2[target - arr1[count]]) {
+				return [target - arr1[count], arr1[count]];
 			}
 		}
-	}
 
+		if (arr2[count]) {
+			obj2[arr2[count]] = true;
+			if (obj1[target - arr2[count]]) {
+				return [target - arr2[count], arr2[count]];
+			}
+		}
+
+		count++;
+	}
 	return false;
 }
-sumOfTwo([10, 10, 2, 2, 3, 21], [0, 12, 33, 4, 2, 0, 10], 4);
+
+sumOfTwo([10, 10, 7, 2, 2, 10, 21], [2, 2, 7, 1], 17);
+
