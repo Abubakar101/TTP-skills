@@ -7,7 +7,7 @@
 
 function sortByString(s, t) {
 	const obj = {};
-	let newWord = '';
+	let str = '';
 
 	for (let char of s) {
 		if (!obj[char]) {
@@ -18,11 +18,11 @@ function sortByString(s, t) {
 	}
 	for (let char of t) {
 		if (obj[char]) {
-			newWord += char.repeat(obj[char]);
+			str += char.repeat(obj[char]);
 		}
 	}
 
-	return newWord;
+	return str;
 }
 
 sortByString('weather', 'therapyw'); // =>  "theeraw"
