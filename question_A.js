@@ -21,7 +21,6 @@ function sortByString(s, t) {
 			str += char.repeat(obj[char]);
 		}
 	}
-
 	return str;
 }
 
