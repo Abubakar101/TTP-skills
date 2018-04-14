@@ -22,3 +22,12 @@ Given the same input string and k = 3, split the string into groups of 2, 3, and
 Write a function that, given a sentence like the one above, along with the position of an opening parenthesis, finds the corresponding closing parenthesis. 
 
 Example: if the example string above is input with the number 10 (position of the first parenthesis), the output should be 79 (position of the last parenthesis).
+
+---
+### Question A -- sortByStrings(s,t):
+
+Sort the letters in the string s by the order they occur in the string t.
+
+You can assume t will not have repetitive characters. For s = "weather" and t = "therapyw", the output should be sortByString(s, t) = "theeraw".
+
+For s = "good" and t = "odg", the output should be sortByString(s, t) = "oodg".
