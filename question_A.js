@@ -26,5 +26,4 @@ function sortByString(s, t) {
 }
 
 sortByString('weather', 'therapyw'); // =>  "theeraw"
-sortByString("good", "odg"); // =>  "oodg"
-
+sortByString('good', 'odg'); // =>  "oodg"
