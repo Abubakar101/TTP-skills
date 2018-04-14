@@ -10,10 +10,12 @@ How can we trim down the amount of space taken up by "visited"? Explain in words
 
 /*
 -------------------
-We can use Trie data structure to store visited URLs by the web crawler. 
-This way, unlike the hash table, we don't need to save the parent/ or parent/child or parent/child/grandchildren URLs separately. 
-Instead, we can decide if the crawler has already visited the location by checking child's node inside the parent's node, 
-i.e., child - about's (/about) node inside the parent - google (google.com/) node!
+>>>>>> ANSWER <<<<<<<<
+
+We can use Trie data structure to store the visited URLs by the web crawler. This way, unlike the hash table, we don't need to save the entire URLs separately like the 
+parent/ & parent/child & parent/child/grandchildren. 
+
+Instead, we can check if the crawler has already visited the location by checking child's node inside the parent's node, i.e., child - about's (/about) node inside the parent - google (google.com/) node!
 
 -------------------
 */
