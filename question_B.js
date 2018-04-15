@@ -20,3 +20,88 @@ Instead, we can check if the crawler has already visited the location by checkin
 -------------------
 */
 
+
+
+//Trie Data Structure
+
+class Node {
+	constructor() {
+		this.keys = new Map();
+		this.end = false;
+	}
+	// Setter
+	setEnd() {
+		this.end = true;
+	}
+
+	// Getter
+	isEnd() {
+		return this.end;
+	}
+}
+
+class Trie {
+	constructor() {
+		this.root = new Node();
+	}
+
+	// Adding URls
+	add(input, parentNode = this.root) {
+		let currentNode = input.split('/').filter(x => x.length)[0];
+		let nextNode = input.split('/').filter(x => x.length).splice(1).join('/');
+
+		if (input.length === 0) {
+			parentNode.setEnd();
+			return;
+		} else if (!parentNode.keys.has(currentNode)) {
+			parentNode.keys.set(currentNode, new Node());
+			return this.add(nextNode, parentNode.keys.get(currentNode));
+		} else {
+			return this.add(nextNode, parentNode.keys.get(currentNode));
+		}
+	}
+
+	// Checking Visited URLs
+	isVisited(value, parentNode = this.root) {
+		let currentNode = value.split('/').filter(x => x.length);
+		while (currentNode.length > 1) {
+			if (!parentNode.keys.has(currentNode[0])) {
+				return false;
+			} else {
+				parentNode = parentNode.keys.get(currentNode[0]);
+				currentNode = currentNode.slice(1);
+			}
+		}
+
+		return parentNode.keys.has(currentNode[0]) &&
+			parentNode.keys.get(currentNode[0]).isEnd()
+			? true
+			: false;
+	}
+
+  // Helper Function
+	print() {
+		let URLs = [];
+		let search = function(parentNode, url = '') {
+			if (parentNode.keys.size !== 0) {
+				for (let path of parentNode.keys.keys()) {
+					search(
+						parentNode.keys.get(path),
+						(url += url.length > 1 ? `/${path}` : path)
+					);
+				}
+			} else {
+				return url.length > 0 ? URLs.push(url) : undefined;
+			}
+		};
+		search(this.root);
+		return URLs.length ? `Added URLs ${URLs}` : 'Not Added';
+	}
+}
+
+URL = new Trie();
+URL.add('google.com/contact/address/newyork/');
+
+console.log(URL.isVisited('google.com/contact/address/newyork/'));
+console.log(URL.print());
+
